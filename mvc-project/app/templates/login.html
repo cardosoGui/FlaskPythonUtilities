@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <h2>Login</h2>
+    <hr>
+    <div class="col-md-auto" align="left">
+        <form action="" method="POST">
+            {{ form_login.csrf_token }}
+            <div class="form-group">
+                <label>Username</label> {{ form_login.username(class="form-control", placeholder="Login user") }} {% if form_login.errors.username %}
+                <div class="alert alert-danger" role="alert">{% for err in form_login.errors.username %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label>Password</label> {{ form_login.password(class="form-control", placeholder="Password") }} {% if form_login.errors.password %}
+                <div class="alert alert-danger" role="alert">{% for err in form_login.errors.password %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="checkbox">
+                <label>
+            {{ form_login.remember_me }} Remember me
+        </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+<br>
+<br> {% with messages = get_flashed_messages() %} {% if messages %}
+<div class="col-md-auto">
+    <div class="alert alert-warning">
+        <div class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <h2>Update Register</h2>
+    <hr>
+    <div class="col-md-6" align="left">
+        <form action="" method="POST">
+            {{ form_update.csrf_token }}
+            <div class="form-group">
+                <label>Userlogin</label> {{ form_update.username(class="form-control", placeholder="Confirm Login") }} {% if form_update.errors.username %}
+                <div class="alert alert-danger" role="alert">{% for err in form_update.errors.username %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label>Name</label> {{ form_update.name(class="form-control", placeholder="Modify Name") }} {% if form_update.errors.name %}
+                <div class="alert alert-danger" role="alert">{% for err in form_update.errors.name %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label>Email</label> {{ form_update.email(class="form-control", placeholder="Insert your Email") }} {% if form_update.errors.email %}
+                <div class="alert alert-danger" role="alert">{% for err in form_update.errors.email %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="checkbox">
+                <label>
+            {{ form_update.accept_terms }} Accept the terms...
+        </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

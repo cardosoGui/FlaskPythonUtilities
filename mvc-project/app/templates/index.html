@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block title %}{{ super() }} - Index{% endblock %} {% block content %}
+
+<div class="inner cover">
+    <h1 class="cover-heading">Welcome.</h1>
+    <p class="lead">Simple CRUD system, for various utilities, developed for the educational purpose of self-learning. Have a good time :)</p>
+    <p class="lead">
+        <a href="#" class="btn btn-lg btn-default">Learn more</a>
+    </p>
+</div>
+
+{% with messages = get_flashed_messages() %} {% if messages %}
+<div class="col-md-auto">
+    <div class="alert alert-warning">
+        <div class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+    </div>
+</div>
+{% endblock %}

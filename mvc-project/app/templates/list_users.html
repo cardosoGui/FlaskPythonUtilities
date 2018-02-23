@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+
+<table class="table">
+    <div class="col-md-6">
+        <thead>
+            <tr>
+                <th scope="col">User Name</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        {% for item in users_list %}
+        <tbody>
+            <td>{{ item.username }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+        </tbody>
+        {% else %}
+        <li><em>Unbelievable. No entries here so far</em> {% endfor %}
+        </li>
+    </div>
+</table>
+<hr>
+
+
+<div class="col-md-auto" align="center">
+    <form action="" method="POST">
+        {{ delete_form.csrf_token }}
+        <div class="form-group">
+            <label><h3>Delete Entries</h3></label> {{ delete_form.username(class="form-control", placeholder="Select Login") }} {% if delete_form.errors.username %}
+            <div class="alert alert-danger" role="alert">{% for err in delete_form.errors.username %}
+                <ul>
+                    <li>{{ err }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-default">Confirm</button>
+    </form>
+</div>
+{% endblock %}

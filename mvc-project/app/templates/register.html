@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <h2>Register</h2>
+    <hr>
+    <div class="col-md-auto" align="left">
+        <form action="" method="POST">
+            {{ form_registration.csrf_token }}
+            <div class="form-group">
+                <label>Userlogin</label> {{ form_registration.username(class="form-control", placeholder="Create Login") }} {% if form_registration.errors.username %}
+                <div class="alert alert-danger" role="alert">{% for err in form_registration.errors.username %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label>Name</label> {{ form_registration.name(class="form-control", placeholder="Insert your Full Name") }} {% if form_registration.errors.name %}
+                <div class="alert alert-danger" role="alert">{% for err in form_registration.errors.name %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label>Email</label> {{ form_registration.email(class="form-control", placeholder="Insert your Email") }} {% if form_registration.errors.email %}
+                <div class="alert alert-danger" role="alert">{% for err in form_registration.errors.email %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label>Password</label> {{ form_registration.password(class="form-control", placeholder="Password") }} {% if form_registration.errors.password %}
+                <div class="alert alert-danger" role="alert">{% for err in form_registration.errors.password %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label> {{ form_registration.confirm(class="form-control", placeholder="Confirm Password") }} {% if form_registration.errors.password %}
+                <div class="alert alert-danger" role="alert">{% for err in form_registration.errors.confirm %}
+                    <ul>
+                        <li>{{ err }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+
+
+            <div class="checkbox">
+                <label>
+            {{ form_registration.accept_terms }} Accept the terms...
+        </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+{% with messages = get_flashed_messages() %} {% if messages %}
+<div class="alert alert-warning">
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %} {% endwith %} {% endblock %}

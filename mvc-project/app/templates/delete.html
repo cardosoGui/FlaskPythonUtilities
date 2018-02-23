@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<form action="" method="POST">
+    {{ form_registration.csrf_token }}
+    <div class="form-group">
+        <label>Userlogin</label> {{ form_registration.username(class="form-control", placeholder="Create Login") }} {% if form_registration.errors.username %}
+        <div class="alert alert-danger" role="alert">{% for err in form_registration.errors.username %}
+            <ul>
+                <li>{{ err }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-md-auto">
+        <div class="alert alert-warning">
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %} {% endwith %}
+        </div>
+    </div>
+
+
+    {% endblock %}
